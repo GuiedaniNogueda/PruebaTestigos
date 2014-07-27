@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sites
+
   resources :pages
 
   resources :lines

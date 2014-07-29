@@ -4,7 +4,8 @@ class CreativesController < ApplicationController
   # GET /creatives
   # GET /creatives.json
   def index
-    @creatives = Creative.all
+    @order = Order.find(params[:order_id])
+    @creatives = @order.creatives.all
   end
 
   # GET /creatives/1
@@ -14,21 +15,25 @@ class CreativesController < ApplicationController
 
   # GET /creatives/new
   def new
-    @creative = Creative.new
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.new
+    @creatives = @order.creatives.all
   end
 
   # GET /creatives/1/edit
   def edit
+    @order = Order.find(params[:order_id])
   end
 
   # POST /creatives
   # POST /creatives.json
   def create
-    @creative = Creative.new(creative_params)
+    @order= Order.find(params[:order_id])
+    @creative = @order.creatives.new(creative_params)
 
     respond_to do |format|
       if @creative.save
-        format.html { redirect_to @creative, notice: 'Creative was successfully created.' }
+        format.html { redirect_to new_order_creative_path(@order), notice: 'Creative was successfully created.' }
         format.json { render :show, status: :created, location: @creative }
       else
         format.html { render :new }

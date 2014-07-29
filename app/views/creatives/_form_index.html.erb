@@ -1,0 +1,51 @@
+<%= form_for [@order, @creative] do |f| %>
+  <% if @creative.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@creative.errors.count, "error") %> prohibited this creative from being saved:</h2>
+
+      <ul>
+      <% @creative.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :creative_name %><br>
+    <%= f.text_field :creative_name %>
+  </div>
+  <div class="field">
+    <%= f.label :order_id %><br>
+    <%= f.number_field :order_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<div>
+<thead>
+    <tr>
+      <th>Creative name</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @creatives.each do |creative| %>
+      <tr>
+        <td><%= creative.creative_name %></td>
+        <td><%= creative.order_id %></td>
+        <td><%= link_to 'Show', order_creative_path(@order, creative) %></td>
+        <td><%= link_to 'Edit', edit_order_creative_path(@order, creative) %></td>
+        <td><%= link_to 'Destroy', order_creative_path(@order, creative), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+
+<%= link_to 'New Creative', new_order_creative_path %>

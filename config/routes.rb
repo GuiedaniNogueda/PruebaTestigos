@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
+
+  root to: 'orders#new'
   resources :sites
-
-  resources :pages
-
-  resources :lines
 
   resources :formats
 
   resources :agencies
 
-  resources :creatives
-
-  resources :orders
+  resources :orders do
+    resources :creatives do
+      resources :lines
+      end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

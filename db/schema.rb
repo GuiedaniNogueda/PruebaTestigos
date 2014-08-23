@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727232955) do
+ActiveRecord::Schema.define(version: 20140823021016) do
 
   create_table "agencies", force: true do |t|
     t.string   "agency_name"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20140727232955) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orders", ["order_number"], name: "index_orders_on_order_number"
 
   create_table "pages", force: true do |t|
     t.integer  "creative_id"

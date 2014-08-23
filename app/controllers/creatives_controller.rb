@@ -36,7 +36,7 @@ class CreativesController < ApplicationController
         format.html { redirect_to new_order_creative_path(@order), notice: 'Creative was successfully created.' }
         format.json { render :show, status: :created, location: @creative }
       else
-        format.html { render :new }
+        format.html { redirect_to new_order_creative_path(@order) }
         format.json { render json: @creative.errors, status: :unprocessable_entity }
       end
     end
@@ -59,9 +59,11 @@ class CreativesController < ApplicationController
   # DELETE /creatives/1
   # DELETE /creatives/1.json
   def destroy
+    @order= Order.find(params[:order_id])
+
     @creative.destroy
     respond_to do |format|
-      format.html { redirect_to creatives_url, notice: 'Creative was successfully destroyed.' }
+      format.html { redirect_to new_order_creative_path(@order), notice: 'Creative was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

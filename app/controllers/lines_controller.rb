@@ -32,11 +32,20 @@ class LinesController < ApplicationController
   # POST /lines
   # POST /lines.json
   def create
-    @line = Line.new(line_params)
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @lines = @creative.lines.all
+    @line = @creative.lines.new(line_params)
 
     respond_to do |format|
       if @line.save
-        format.html { redirect_to @line, notice: 'Line was successfully created.' }
+
+        @page = @creative.pages.new
+        @page.creative_id = @creative.id
+        @page.line_id = @line.id
+        @page.save
+
+        format.html { redirect_to new_order_creative_line_path(@order, @creative), notice: 'Line was successfully created.' }
         format.json { render :show, status: :created, location: @line }
       else
         format.html { render :new }
@@ -62,9 +71,13 @@ class LinesController < ApplicationController
   # DELETE /lines/1
   # DELETE /lines/1.json
   def destroy
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @lines = @creative.lines.all
+    
     @line.destroy
     respond_to do |format|
-      format.html { redirect_to lines_url, notice: 'Line was successfully destroyed.' }
+      format.html { redirect_to new_order_creative_line_path(@order, @creative), notice: 'Line was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

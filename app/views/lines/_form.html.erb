@@ -53,7 +53,7 @@
         <td><%= line.start_date %></td>
         <td><%= line.end_date %></td>
         <td><%= link_to 'Edit', edit_order_creative_line_path(@order, @creative, line) %></td>
-        <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', order_creative_line_path(@order, @creative, line), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,7 +4,9 @@ class LinesController < ApplicationController
   # GET /lines
   # GET /lines.json
   def index
-    @lines = Line.all
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @lines = @creative.lines
   end
 
   # GET /lines/1
@@ -14,11 +16,17 @@ class LinesController < ApplicationController
 
   # GET /lines/new
   def new
-    @line = Line.new
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @lines = @creative.lines.all
+    @line = @creative.lines.new
   end
 
   # GET /lines/1/edit
   def edit
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @line = @creative.lines.find(params[:line_id])  
   end
 
   # POST /lines

@@ -1,4 +1,4 @@
-<%= form_for(@line) do |f| %>
+<%= form_for [@order, @creative, @line] do |f| %>
   <% if @line.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
@@ -31,3 +31,34 @@
     <%= f.submit %>
   </div>
 <% end %>
+<div>
+  <h1>Listing lines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Line number</th>
+      <th>Format</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lines.each do |line| %>
+      <tr>
+        <td><%= line.line_number %></td>
+        <td><%= line.format_id %></td>
+        <td><%= line.start_date %></td>
+        <td><%= line.end_date %></td>
+        <td><%= link_to 'Edit', edit_order_creative_line_path(@order, @creative, line) %></td>
+        <td><%= link_to 'Destroy', line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

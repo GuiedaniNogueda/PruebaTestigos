@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :temp_images
+
   get 'review/show'
 
   root to: 'orders#new'

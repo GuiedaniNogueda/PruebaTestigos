@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :images
+
   resources :temp_images
 
   get 'review/show'

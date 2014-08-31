@@ -28,7 +28,7 @@ class TempImagesController < ApplicationController
 
     respond_to do |format|
       if @temp_image.save
-        format.html { redirect_to @temp_image, notice: 'Temp image was successfully created.' }
+        format.html { redirect_to new_order_path, notice: 'Temp image was successfully created.' }
         format.json { render :show, status: :created, location: @temp_image }
       else
         format.html { render :new }

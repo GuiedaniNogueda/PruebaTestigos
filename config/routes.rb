@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :orders do
     resources :creatives do
       resources :lines
-      end
+      resources :images
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

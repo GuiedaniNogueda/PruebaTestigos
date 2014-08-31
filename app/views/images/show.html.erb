@@ -4,6 +4,7 @@
   <strong>Creative:</strong>
   <%= @image.creative_id %>
 </p>
+<%= image_tag @image.asset.url(:medium) %>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>

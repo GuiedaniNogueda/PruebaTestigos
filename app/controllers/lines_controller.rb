@@ -6,7 +6,7 @@ class LinesController < ApplicationController
   def index
     @order = Order.find(params[:order_id])
     @creative = @order.creatives.find(params[:creative_id])
-    @lines = @creative.lines
+    @lines = @creative.lines.all
   end
 
   # GET /lines/1

@@ -13,8 +13,13 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/new
-  def new
-    @image = Image.new
+  def new 
+    @temp_images = TempImage.all;
+
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @images = @creative.images.all
+    @image = @creative.images.new
   end
 
   # GET /images/1/edit
@@ -24,11 +29,16 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.create(image_params)
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @image = @creative.images.new(image_params)
+    @temp_image = TempImage.find(params[:id_temp_image]);
+    @image.asset = @temp_image.asset
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        @temp_image.destroy
+        format.html { redirect_to new_order_creative_image_path(@order, @creative) , notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }

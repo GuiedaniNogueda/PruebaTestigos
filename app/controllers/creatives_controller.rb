@@ -33,7 +33,7 @@ class CreativesController < ApplicationController
 
     respond_to do |format|
       if @creative.save
-        format.html { redirect_to new_order_creative_path(@order), notice: 'Creative was successfully created.' }
+        format.html { redirect_to order_creative_panel_index_path(@order, @creative), notice: 'Creative was successfully created.' }
         format.json { render :show, status: :created, location: @creative }
       else
         format.html { redirect_to new_order_creative_path(@order) }

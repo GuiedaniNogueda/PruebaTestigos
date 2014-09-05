@@ -1,0 +1,21 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Imágenes Asignadas</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @images.each do |image| %>
+        <tr>
+          <td>
+            <div>
+              <%= image_tag image.asset.url(:small) %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

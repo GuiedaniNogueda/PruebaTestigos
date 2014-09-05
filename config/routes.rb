@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
+  root to: 'orders#new'
+  
   resources :images
 
   resources :temp_images
 
-  get 'review/show'
-
-  root to: 'orders#new'
   resources :sites
 
   resources :formats
@@ -14,9 +13,11 @@ Rails.application.routes.draw do
   resources :agencies
 
   resources :orders do
+    resources :lines
     resources :creatives do
-      resources :lines
+      resources :pages
       resources :images
+      resources :panel
     end
   end
 

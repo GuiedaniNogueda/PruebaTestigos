@@ -20,25 +20,21 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
 <div>
 <table>
 <thead>
     <tr>
       <th>Creative name</th>
-      <th>Order</th>
-      <th colspan="2"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @creatives.each do |creative| %>
       <tr>
-        <td><%= creative.creative_name %></td>
-        <td><%= creative.order_id %></td>
-        <td><%= link_to 'Imágenes', new_order_creative_image_path(@order, creative)%></td>
-        <td><%= link_to 'Lineas', new_order_creative_line_path(@order, creative)%></td>
-        <td><%= link_to 'Edit', edit_order_creative_path(@order, creative) %></td>
-        <td><%= link_to 'Destroy', order_creative_path(@order, creative), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to creative.creative_name, new_order_creative_image_path(@order, creative)%></td>
       </tr>
     <% end %>
   </tbody>

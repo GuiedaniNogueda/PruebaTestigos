@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
 	has_many :creatives
+	has_many :lines
 
 	validates :order_number, presence: true,
 							 uniqueness: true,

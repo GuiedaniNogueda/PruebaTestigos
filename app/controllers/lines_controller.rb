@@ -5,7 +5,7 @@ class LinesController < ApplicationController
   # GET /lines.json
   def index
     @order = Order.find(params[:order_id])
-    @creative = @order.creatives.find(params[:creative_id])
+    #@creative = @order.creatives.find(params[:creative_id])
     @lines = @creative.lines.all
   end
 
@@ -17,9 +17,9 @@ class LinesController < ApplicationController
   # GET /lines/new
   def new
     @order = Order.find(params[:order_id])
-    @creative = @order.creatives.find(params[:creative_id])
-    @lines = @creative.lines.all
-    @line = @creative.lines.new
+    #@creative = @order.creatives.find(params[:creative_id])
+    @lines = @order.lines.all
+    @line = @order.lines.new
   end
 
   # GET /lines/1/edit
@@ -33,19 +33,19 @@ class LinesController < ApplicationController
   # POST /lines.json
   def create
     @order = Order.find(params[:order_id])
-    @creative = @order.creatives.find(params[:creative_id])
-    @lines = @creative.lines.all
-    @line = @creative.lines.new(line_params)
+    #@creative = @order.creatives.find(params[:creative_id])
+    @lines = @order.lines.all
+    @line = @order.lines.new(line_params)
 
     respond_to do |format|
       if @line.save
 
-        @page = @creative.pages.new
-        @page.creative_id = @creative.id
-        @page.line_id = @line.id
-        @page.save
+        #@page = @creative.pages.new
+        #@page.creative_id = @creative.id
+        #@page.line_id = @line.id
+        #@page.save
 
-        format.html { redirect_to new_order_creative_line_path(@order, @creative), notice: 'Line was successfully created.' }
+        format.html { redirect_to new_order_line_path(@order, @creative), notice: 'Line was successfully created.' }
         format.json { render :show, status: :created, location: @line }
       else
         format.html { render :new }

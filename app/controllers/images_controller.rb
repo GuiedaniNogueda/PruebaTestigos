@@ -13,12 +13,9 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/new
-  def new 
-    @temp_images = TempImage.all;
-
+  def new
     @order = Order.find(params[:order_id])
     @creative = @order.creatives.find(params[:creative_id])
-    @images = @creative.images.all
     @image = @creative.images.new
   end
 
@@ -30,15 +27,16 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @order = Order.find(params[:order_id])
-    @creative = @order.creatives.find(params[:creative_id])
-    @image = @creative.images.new(image_params)
+    @lines = @order.lines.all
+    @creative = @order.creatives.find(params[:creative_id]) 
+    @image = @creative.images.new
     @temp_image = TempImage.find(params[:id_temp_image]);
     @image.asset = @temp_image.asset
 
     respond_to do |format|
       if @image.save
         @temp_image.destroy
-        format.html { redirect_to new_order_creative_image_path(@order, @creative) , notice: 'Image was successfully created.' }
+        format.html { redirect_to order_creative_panel_index_path(@order, @creative) , notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -79,6 +77,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:creative_id)
+      params.require(:image).permit(:creative_id, :asset)
     end
 end

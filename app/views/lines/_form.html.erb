@@ -27,6 +27,10 @@
     <%= f.label :end_date %><br>
     <%= f.date_select :end_date %>
   </div>
+  <div class="field">
+    <%= f.label :order_id %><br>
+    <%= f.number_field :order_id %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -39,9 +43,10 @@
     <tr>
       <th>Line number</th>
       <th>Format</th>
+      <th>Order</th>
       <th>Start date</th>
       <th>End date</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -50,10 +55,11 @@
       <tr>
         <td><%= line.line_number %></td>
         <td><%= line.format_id %></td>
+        <td><%= line.order_id %></td>
         <td><%= line.start_date %></td>
         <td><%= line.end_date %></td>
-        <td><%= link_to 'Edit', edit_order_creative_line_path(@order, @creative, line) %></td>
-        <td><%= link_to 'Destroy', order_creative_line_path(@order, @creative, line), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_order_line_path(@order, line) %></td>
+        <td><%= link_to 'Destroy', order_line_path(@order, line), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -61,4 +67,7 @@
 
 <br>
 
+</div>
+<div>
+  <%= link_to 'Creativos', new_order_creative_path(@order) %>
 </div>

@@ -1,0 +1,20 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Lineas Asignadas</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lineas_asignadas.each do |line_a| %>
+        <tr>
+          <td><%= line_a.line_number %></td>
+          <td><%= line_a.format_id %></td>
+          <td><%= line_a.start_date %></td>
+          <td><%= line_a.end_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

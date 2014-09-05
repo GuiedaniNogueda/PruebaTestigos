@@ -24,11 +24,14 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(page_params)
-
+    @order = Order.find(params[:order_id])
+    @creative = @order.creatives.find(params[:creative_id])
+    @page = @creative.pages.new
+    @page.creative_id = @creative.id
+    @page.line_id = params[:id_line]
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to order_creative_panel_index_path(@order, @creative), notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }

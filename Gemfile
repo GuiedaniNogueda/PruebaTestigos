@@ -46,5 +46,10 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
+# Manejo de imágenes
 gem "paperclip", "~> 3.5.3"
+
+# Para estilos
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'sprockets', '2.11.0'

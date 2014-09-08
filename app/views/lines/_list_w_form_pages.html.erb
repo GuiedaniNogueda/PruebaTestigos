@@ -17,7 +17,7 @@
           <td><%= line.start_date %></td>
           <td><%= line.end_date %></td>
           <td>
-            <%= form_for [@order, @creative, @page] do |f| %>
+            <%= form_for [@order, @page] do |f| %>
               <% if @page.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -28,8 +28,14 @@
                   </ul>
                 </div>
               <% end %>
+              <div style="display: none">
+                <%= f.text_field :creative_id, :value => @creative_selected.id %>
+              </div>
+              <div style="display: none">
+                <%= f.text_field :line_id, :value => line.id %>
+              </div>
               <div class="actions">
-                <%= f.button  :submit , name: "id_line",value: line.id %>
+                <%= f.submit %>
               </div>
             <% end %>
           </td> 

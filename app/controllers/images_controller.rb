@@ -4,7 +4,6 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
   end
 
   # GET /images/1
@@ -14,9 +13,6 @@ class ImagesController < ApplicationController
 
   # GET /images/new
   def new
-    @order = Order.find(params[:order_id])
-    @creative = @order.creatives.find(params[:creative_id])
-    @image = @creative.images.new
   end
 
   # GET /images/1/edit
@@ -27,16 +23,14 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @order = Order.find(params[:order_id])
-    @lines = @order.lines.all
-    @creative = @order.creatives.find(params[:creative_id]) 
-    @image = @creative.images.new
+    @image = Image.new(image_params)
     @temp_image = TempImage.find(params[:id_temp_image]);
     @image.asset = @temp_image.asset
 
     respond_to do |format|
       if @image.save
         @temp_image.destroy
-        format.html { redirect_to order_creative_panel_index_path(@order, @creative) , notice: 'Image was successfully created.' }
+        format.html { redirect_to order_panel_index_path(@order, { :creative_selected => image_params[:creative_id] }) , notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }

@@ -1,23 +1,26 @@
 <% @temp_images.each do |temp_image| %>
-  <div>
-    <%= image_tag   temp_image.asset.url(:medium) %>
-  </div>
-  <div>
-  	<%= form_for [@order, @creative, @image] do |f| %>
-	  <% if @image.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
-	      <ul>
-	        <% @image.errors.full_messages.each do |message| %>
-	          <li><%= message %></li>
-	        <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-	  <div class="actions">
-	    <%= f.button  :submit , name: "id_temp_image",value: temp_image.id %>
-	  </div>
-	<% end %>
-  </div>
+	<div>
+		<%= image_tag   temp_image.asset.url(:medium) %>
+	</div>
+	<div>
+		<%= form_for [@order, @image] do |f| %>
+			<% if @image.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+					<ul>
+						<% @image.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<div style="display: none">
+				<%= f.text_field :creative_id, :value => @creative_selected.id %>
+			</div>
+			<div class="actions">
+				<%= f.button  :submit , name: "id_temp_image",value: temp_image.id %>
+			</div>
+		<% end %>
+	</div>
 <% end %>
   

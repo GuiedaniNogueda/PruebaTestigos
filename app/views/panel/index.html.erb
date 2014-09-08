@@ -1,15 +1,20 @@
-<div id="temp_images">
-	<%= render :partial => 'temp_images/list_w_form_image' %>
-</div>
-<div id="order_lines">
-	<%= render :partial => 'lines/list_w_form_pages' %>
-</div>
 <div id="order_creatives">
 	<%= render :partial => 'creatives/list_w_link_to_panel' %>
 </div>
-<div id="creative_images">
-	<%= render :partial => 'images/list' %>
-</div>
-<div id="creative_lines">
-	<%= render :partial => 'lines/list' %>
+<% if @creative_selected != nil %>
+	<div id="temp_images">
+		<%= render :partial => 'temp_images/list_w_form_image' %>
+	</div>
+	<div id="order_lines">
+		<%= render :partial => 'lines/list_w_form_pages' %>
+	</div>
+	<div id="creative_images">
+		<%= render :partial => 'images/list' %>
+	</div>
+	<div id="creative_lines">
+		<%= render :partial => 'lines/list' %>
+	</div>
+<% end %>
+<div id="creative_new">
+	<%= render :partial => 'creatives/form' %>
 </div>

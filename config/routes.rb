@@ -14,11 +14,10 @@ Rails.application.routes.draw do
 
   resources :orders do
     resources :lines
-    resources :creatives do
-      resources :pages
-      resources :images
-      resources :panel
-    end
+    resources :creatives
+    resources :pages
+    resources :images
+    resources :panel
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

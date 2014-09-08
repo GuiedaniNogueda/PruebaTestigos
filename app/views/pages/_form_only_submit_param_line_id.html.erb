@@ -1,4 +1,4 @@
-<%= form_for [@order, @creative, @page] do |f| %>
+<%= form_for [@order, @page] do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -10,6 +10,6 @@
     </div>
   <% end %>
   <div class="actions">
-    <%= f.button  :submit , name: "id_line",value: line.id %>
+    <%= f.button  :submit, name: "id_line", value: line.id %>
   </div>
 <% end %>

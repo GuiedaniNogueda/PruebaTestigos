@@ -20,25 +20,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-
-<div>
-<table>
-<thead>
-    <tr>
-      <th>Creative name</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @creatives.each do |creative| %>
-      <tr>
-        <td><%= link_to creative.creative_name, new_order_creative_image_path(@order, creative)%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-</div>

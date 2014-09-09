@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<%= form_for @order, :html => {:class => "form-horizontal"} do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -11,17 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :order_number %><br>
-    <%= f.number_field :order_number %>
+  <div class="form-group">
+    <%= f.label :order_number, class: "col-md-4 control-label" %>
+    <div class="col-md-7">
+      <%= f.number_field :order_number, class: "form-control" %>  
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :campaign %><br>
-    <%= f.text_field :campaign %>
+  <div class="form-group">
+    <%= f.label :campaign, class: "col-md-4 control-label" %>
+    <div class="col-md-7">
+      <%= f.text_field :campaign, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :agency_id %><br>
-    <%= f.number_field :agency_id %>
+  <div class="form-group">
+    <%= f.label :agency_id, class: "col-md-4 control-label" %>
+    <div class="col-lg-7">
+    <%= f.collection_select :agency_id, Agency.order(:agency_name), :id, :agency_name, include_blank: false, :html => {:class => "form-control"} %>
+    <%= f.collection_select (:agency, :agency_id, Agency.order(:agency_name), :id, :agency_name, prompt: true) %>    
+    </div>
   </div>
   <div class="field">
     <%= f.label :start_date %><br>

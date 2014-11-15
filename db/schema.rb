@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20140903015322) do
   end
 
   create_table "lines", force: true do |t|
-    t.integer  "order_id"
     t.integer  "line_number"
     t.integer  "format_id"
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "orders", force: true do |t|

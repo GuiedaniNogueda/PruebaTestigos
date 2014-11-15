@@ -26,8 +26,7 @@
   <div class="form-group">
     <%= f.label :agency_id, class: "col-md-4 control-label" %>
     <div class="col-lg-7">
-    <%= f.collection_select :agency_id, Agency.order(:agency_name), :id, :agency_name, include_blank: false, :html => {:class => "form-control"} %>
-    <%= f.collection_select (:agency, :agency_id, Agency.order(:agency_name), :id, :agency_name, prompt: true) %>    
+    <%= f.collection_select :agency_id, Agency.all, :id, :agency_name, {:prompt => 'Seleccione Agencia'}, {:class=>'form-control'} %>
     </div>
   </div>
   <div class="field">

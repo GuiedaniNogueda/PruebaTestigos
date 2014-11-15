@@ -10,64 +10,100 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <%= f.label :line_number, "No. Línea", class: "col-md-4 control-label" %>
+    <div class="col-md-7">
+      <%= f.text_field :line_number, class: "form-control" %>  
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :line_number %><br>
-    <%= f.number_field :line_number %>
+  <div class="form-group">
+    <%= f.label :format_id, "Formato", class: "col-md-4 control-label" %>
+    <div class="col-lg-7">
+    <%= f.collection_select :format_id, Format.all, :id, :format_name, {:prompt => 'Seleccione Formato'}, {:class=>'form-control'} %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :format_id %><br>
-    <%= f.number_field :format_id %>
+
+<div class="form-group">
+      <%= f.label :start_date, "Fecha Inicio", :class => "col-md-4 control-label" %>
+
+     <div class="col-md-7">
+      <div class="input-group date">
+        <%= f.text_field :start_date, :class => "form-control input-sm" %><span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+      <script type="text/javascript">
+        $('.input-group.date').datepicker({
+          format: "yyyy-mm-dd",
+          language: "es",
+          autoclose: true,
+          todayHighlight: true
+        });
+      </script>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
+  <div class="form-group">
+      <%= f.label :end_date, "Fecha Fin", :class => "col-md-4 control-label" %>
+
+     <div class="col-md-7">
+      <div class="input-group date">
+        <%= f.text_field :end_date, :class => "form-control input-sm" %><span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+      <script type="text/javascript">
+        $('.input-group.date').datepicker({
+          format: "yyyy-mm-dd",
+          language: "es",
+          autoclose: true,
+          todayHighlight: true
+        });
+      </script>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-md-4"></div>
+      <div class="col-md-7">
+        <div class="actions">
+          <%= f.submit "Guardar", :class=>'btn btn-primary pull-right'%>
+        </div>
+      </div>
   </div>
 <% end %>
-<div>
-  <h1>Listing lines</h1>
+<div class="form-horizontal">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Lineas</div>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No. Línea</th>
+          <th>Formato</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Line number</th>
-      <th>Format</th>
-      <th>Order</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lines.each do |line| %>
-      <tr>
-        <td><%= line.line_number %></td>
-        <td><%= line.format_id %></td>
-        <td><%= line.order_id %></td>
-        <td><%= line.start_date %></td>
-        <td><%= line.end_date %></td>
-        <td><%= link_to 'Edit', edit_order_line_path(@order, line) %></td>
-        <td><%= link_to 'Destroy', order_line_path(@order, line), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-</div>
-<div>
-  <%= link_to 'Siguiente', order_panel_index_path(@order) %>
+      <tbody>
+        <% @lines.each do |line| %>
+          <tr>
+            <td><%= line.line_number %></td>
+            <td><%= line.format_id %></td>
+            <td><%= line.start_date %></td>
+            <td><%= line.end_date %></td>
+            <td><%= link_to 'Edit', edit_order_line_path(@order, line) %></td>
+            <td><%= link_to 'Destroy', order_line_path(@order, line), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <br>
+  </div>
+  <div class="form-group">
+     <div class="col-md-4"></div>
+       <div class="col-md-7">
+          <div class="actions">
+            <%= link_to 'Siguiente', order_panel_index_path(@order), :class=>'btn btn-primary pull-right' %>
+          </div>
+      </div>
+  </div>
+  <br>
 </div>

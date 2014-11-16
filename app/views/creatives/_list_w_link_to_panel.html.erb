@@ -1,21 +1,16 @@
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>Creative name</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @creatives.each do |creative| %>
-        <tr>
-            <% if @creative_selected != nil && creative.id == @creative_selected.id %>
-              <td><b><%= creative.creative_name %></td>
-            <% else %>
-              <td><%= link_to creative.creative_name, order_panel_index_path(@order, {:creative_selected => creative.id})%></td>
-            <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="panel panel-primary">
+  <div class="panel-heading"><strong>Creativo</strong></div>
+  <ul class="list-group">
+    <% @creatives.each do |creative| %>
+      <li class="list-group-item">
+        <% if @creative_selected != nil && creative.id == @creative_selected.id %>
+          <h4 class="text-sucess">
+          <%= creative.creative_name%>
+          </h4>
+        <% else %>
+          <%= link_to creative.creative_name, order_panel_index_path(@order, {:creative_selected => creative.id})%>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>

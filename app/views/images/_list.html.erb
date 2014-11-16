@@ -1,21 +1,10 @@
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>Imágenes Asignadas</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @images.each do |image| %>
-        <tr>
-          <td>
-            <div>
-              <%= image_tag image.asset.url(:small) %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="panel panel-info">
+  <div class="panel-heading"><strong>Imágenes Asignadas</strong></div>
+  <ul class="list-group">
+    <% @images.each do |image| %>
+      <li class="list-group-item">
+        <%= image_tag image.asset.url(:medium), :class=>'img-thumbnail' %>
+      </li>
+    <% end %>
+  </ul>
 </div>

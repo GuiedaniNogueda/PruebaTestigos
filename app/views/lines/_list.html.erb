@@ -1,20 +1,26 @@
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>Lineas Asignadas</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @lineas_asignadas.each do |line_a| %>
+<div class="form-horizontal">
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>Lineas Asignadas</strong></div>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= line_a.line_number %></td>
-          <td><%= line_a.format_id %></td>
-          <td><%= line_a.start_date %></td>
-          <td><%= line_a.end_date %></td>
+          <th>No. Línea</th>
+          <th>Formato</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th colspan="4"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @lineas_asignadas.each do |line_a| %>
+          <tr>
+            <td><%= line_a.line_number %></td>
+            <td><%= line_a.format_id %></td>
+            <td><%= line_a.start_date %></td>
+            <td><%= line_a.end_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -11,15 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :creative_name %><br>
-    <%= f.text_field :creative_name %>
+  <div class="form-group">
+    <%= f.label :creative_name, "Nuevo Creativo", class: "col-md-3 control-label"%>
   </div>
-  <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
+  <div class="col-md-6">
+    <%= f.text_field :creative_name, class: "form-control" %>  
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Aceptar", :class=>'btn btn-primary pull-right'%>
   </div>
 <% end %>

@@ -1,0 +1,2 @@
+module GenTestigoHelper
+end

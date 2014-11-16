@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :agencies
 
   resources :orders do
+    resources :gen_testigo
     resources :lines
     resources :creatives
     resources :pages

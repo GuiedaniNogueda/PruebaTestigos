@@ -16,4 +16,8 @@ class Line < ActiveRecord::Base
     validates :format_id, presence: true
     validates :start_date, presence: true
     validates :end_date, presence: true
+
+    def desc_format
+    	Format.find(format_id).format_name
+    end
 end

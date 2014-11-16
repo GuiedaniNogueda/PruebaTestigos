@@ -20,4 +20,12 @@ class Order < ActiveRecord::Base
     validates :start_date, presence: true
     validates :end_date, presence: true
     validates :site_id, presence: true
+
+    def desc_agency
+    	Agency.find(agency_id).agency_name
+    end
+
+    def desc_site
+    	Site.find(site_id).site_name
+    end
 end

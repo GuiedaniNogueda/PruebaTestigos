@@ -1,42 +1,42 @@
 <style type="text/css">
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #FAFAFA;
-        font: 12pt "Tahoma";
-    }
-    * {
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
-    .page {
-        width: 27.9cm;
-        min-height: 21cm;
-        padding-top: 2cm;
-        margin: 0cm auto;
-        border: 1px #D3D3D3 solid;
-        border-radius: 5px;
-        background: white;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    @page {
-        size: landscape;
-        margin: 0;
-    }
-    @media print {
-        .page {
+	body {
+		margin: 0;
+		padding: 0;
+		background-color: #FAFAFA;
+		font: 12pt "Tahoma";
+	}
+	* {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	.page {
+		width: 27.9cm;
+		min-height: 21cm;
+		padding-top: 2cm;
+		margin: 0cm auto;
+		border: 1px #D3D3D3 solid;
+		border-radius: 5px;
+		background: white;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	}
+	
+	@page {
+		size: landscape;
+		margin: 0;
+	}
+	@media print {
+		.page {
 
-            margin: -80px;
-            border: 0;
-            border-radius: initial;
-            width: initial;
-            min-height: initial;
-            box-shadow: initial;
-            background: initial;
-            page-break-after: always;
-        }
-    }
+			margin: -80px;
+			border: 0;
+			border-radius: initial;
+			width: initial;
+			min-height: initial;
+			box-shadow: initial;
+			background: initial;
+			page-break-after: always;
+		}
+	}
 	</style>
 		<div class="page">
 			<div class="row">
@@ -44,12 +44,12 @@
 					<%= image_tag 'cnn_mexico.png', width:"90%" %>
 				</div>
 				<div id="cabecera_titulos">
-					<p class="nombre_campania text-center" style="font-size: 60px; padding: 50px 0px 20px 0px">Chopard</p>
-					<p class="agencia text-center" style="font-size: 40px; padding: 50px 0px 20px 0px">Publicitas AG</p>
-					<p class="fechas text-center" style="font-size: 30px; padding: 50px 0px 20px 0px">09 de septiembre – 22 de septiembre</p>
+					<p id="creativo" class="text-center" style="font-size: 60px; padding: 50px 0px 20px 0px"><%= @order.campaign %></p>
+					<p class="agencia text-center" style="font-size: 40px; padding: 50px 0px 20px 0px"><%= @order.desc_agency %></p>
+					<p class="fechas text-center" style="font-size: 30px; padding: 50px 0px 20px 0px"><%= @order.start_date %> – <%= @order.end_date %></p>
 				</div>
 				<div id="orden">
-					<p class="text-right" style="font-size: 20px; padding: 50px 0px 20px 0px">Orden: 101513</p>
+					<p class="text-right" style="font-size: 20px; padding: 50px 0px 20px 0px">Orden: <%= @order.order_number %></p>
 				</div>
 				<div class="adorno_pie" style="background-color:#B81E0D; height: 30px; width: 100%;" >
 				</div>
@@ -57,17 +57,26 @@
 				</div>
 			</div>
 		</div>
-
+<%
+@creatives.each do |creative| 
+	images = creative.images
+	lines = creative.lines
+	images.each do |image|
+%>
 		<div class="page">
 			<div class="row">
 				<div class="creativo" style="font-size: 10px; padding: 50px 0px 0px 0px;">
-					<p class="text-center">Sitio: <b>CNNMéxico.com</b>  Material: <b>Box Banner</b> Fecha: <b>09 de septiembre – 22 de septiembre</b></p>
+		<% lines.each do |line| %>
+					<p class="text-center">Sitio: <b><%= @order.desc_site %></b>  Material: <b><%= line.desc_format %></b> Fecha: <b><%= line.start_date %> – <%= line.end_date %></b></p>
+		<% end %>
 				</div>
 				<div class="linea">
-					<p style="font-size: 18px;">Línea: <b>234150</b></p>
+		<% lines.each do |line| %>
+					<p style="font-size: 18px;">Línea: <b><%= line.line_number %></b></p>
+		<% end %>
 				</div>
 				<div class="imagenes">
-					<%= image_tag 'img2.png', width: "100%" %>
+					<%= image_tag image.asset.url, width: "100%" %>
 				</div>
 				
 				<div class="row">
@@ -76,4 +85,8 @@
 					</div>
 				</div>
 			</div>		
-  		</div>
+		</div>
+<% 
+	end
+end
+%>

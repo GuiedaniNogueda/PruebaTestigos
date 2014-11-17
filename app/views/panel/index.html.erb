@@ -16,15 +16,20 @@
         <%= render :partial => 'images/list' %>
       </div>
     <% end %>
+    <div class="form-group">
+    <%= link_to 'Generar Testigo', order_gen_testigo_index_path(@order), :class=>'btn btn-link pull-right' %>
+    <br>
+    </div>
   </div>
 </div>
 <div class="col-md-6">
   <div class="well">
-    <div id="temp_images">
+    <div id="order_lines" class="form-group">
+      <%= render :partial => 'lines/list_w_form_pages' %>
+      <br><br>
+    </div>
+    <div id="temp_images" class="form-group">
     		<%= render :partial => 'temp_images/list_w_form_image' %>
-    	</div>
-    <div id="order_lines">
-    	<%= render :partial => 'lines/list_w_form_pages' %>
     </div>
   </div>
 </div>

@@ -14,10 +14,11 @@
     <%= f.label :asset %><br>
     <%= f.text_field :asset %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
   <div class="figure">
     <img id="target" class="img-thumbnail" src="">
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Guardar", :class=>'btn btn-primary pull-right'%>
   </div>
 <% end %>
